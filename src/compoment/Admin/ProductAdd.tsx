@@ -84,9 +84,7 @@ const ProductAdd = () => {
             <div>
               {gallery.map((item:any,index:number)=>{
                 return(
-                  <>
                   <img key={index} src={item} alt={item}  width={100} height={100}/>
-                  </>
                 )
               })}
             </div>

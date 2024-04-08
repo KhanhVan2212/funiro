@@ -37,7 +37,7 @@ const Category = () => {
           {data?.map((product:any, index:number) => {
             
             return (
-              <>
+        
                 <tr key={index}>
                   <td>{index + 1 }</td>
                   <td
@@ -71,7 +71,7 @@ const Category = () => {
                     </button>
                   </td>
                 </tr>
-              </>
+             
             );
           })}
         </tbody>

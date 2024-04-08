@@ -33,6 +33,7 @@ const LoginPage = () => {
       const { mutate } = useMutation({
         mutationFn: async (formData: { email: string; password: string }) => {
             const { data } = await axios.post("http://localhost:8080/auth/signin", formData);
+            
             return data;
         },
         onSuccess: (data) => {setUser(data); alert("Login successful"); navigate("/");},

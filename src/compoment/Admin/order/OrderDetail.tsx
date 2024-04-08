@@ -43,9 +43,9 @@ const OrderDetail = () => {
         </thead>
   
         <tbody>
-        {product?.items?.map(({name, price ,discount , quantity}:Product)=>{
+        {product?.items?.map(({name, price ,discount , quantity}:Product ,index)=>{
                     return (
-                <tr>
+                <tr key={index}>
                   <td  scope="row"
                     className="px-6 py-4 font-medium text-gray-900 ">{name}</td>
                   <td

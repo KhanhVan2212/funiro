@@ -45,7 +45,7 @@ const Order = () => {
             
             
             return (
-              <>
+           
          
                 <tr key={index}>
           
@@ -110,7 +110,7 @@ const Order = () => {
                   </td>
                 </tr>
              
-              </>
+            
             );
           })}
         </tbody>

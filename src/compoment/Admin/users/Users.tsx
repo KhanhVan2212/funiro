@@ -40,7 +40,7 @@ if (isError) return <div>Lỗi rồi</div>;
         {data?.map((product:any, index:number) => {
           
           return (
-            <>
+    
               <tr key={index}>
                 <td>{index + 1 }</td>
                 <td
@@ -98,7 +98,7 @@ if (isError) return <div>Lỗi rồi</div>;
                   </button>
                 </td>
               </tr>
-            </>
+      
           );
         })}
       </tbody>
