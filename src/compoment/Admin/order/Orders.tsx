@@ -1,0 +1,124 @@
+import { Link } from 'react-router-dom';
+
+import useOrderQuery from '../../../hooks/useOrder/useOrderQuery';
+import useOrderMutation from '../../../hooks/useOrder/useOrderMutation';
+
+
+const Order = () => {
+    const {data , isLoading , isError} = useOrderQuery()
+    const { mutate } = useOrderMutation({
+
+      action: "DELETE",
+  });
+     
+  if (isLoading) return <div>Loading...</div>;
+  if (isError) return <div>Lỗi rồi</div>;
+    return (
+     
+      <div className="w-full mt-28 mx-4 pl-2 overflow-x-auto shadow-md sm:rounded-lg">
+     
+      <table className="w-full text-[15px] text-left text-gray-500 dark:text-gray-400">
+        <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+          <tr>
+          <th scope="col" className=" text-[15px] px-6 py-3">
+           mã Đơn hàng
+            </th>
+            <th scope="col" className=" text-[15px] px-6 py-3">
+            Tên khách hàng
+            </th>
+            <th scope="col" className=" text-[15px] px-6 py-3">
+            Số điện thoại
+            </th>
+            <th scope="col" className=" text-[15px] px-6 py-3">
+            Email khách hàng
+            </th>
+         
+            <th scope="col" className=" text-[15px] px-6 py-3">
+            Trạng thái
+            </th>
+            <th scope="col" className=" text-[15px] px- py-3"></th>
+          </tr>
+        </thead>
+      
+        <tbody>
+          {data?.map((product:any, index:number) => {
+            
+            
+            return (
+              <>
+         
+                <tr key={index}>
+          
+                  <td>{product._id }</td>
+                  <td
+                    scope="row"
+                    className="px-6 py-4 font-medium text-gray-900 "
+                  >
+                    {product.customerInfo.customerName  }
+                  </td>
+                  <td
+                    scope="row"
+                    className="px-6 py-4 font-medium text-gray-900 "
+                  >
+                    {product.customerInfo.customerPhone  }
+                  </td>
+                  <td
+                    scope="row"
+                    className="px-6 py-4 font-medium text-gray-900 "
+                  >
+                    {product.customerInfo.customerEmail }
+                  </td>
+                 
+                  <td
+                    scope="row"
+                    className="px-6 py-4 font-medium text-gray-900 "
+                  >
+                     {product.status }
+                  </td>
+                  <td className="pt-3 px-5 flex items-center justify-center">
+                  <Link
+                      to={`${product._id}/detail`}
+                      type="button"
+                      className="mr-3  bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded 
+                     focus:outline-none focus:shadow-outline"
+                    >
+                      {" "}
+                      Chi tiết{" "}
+                    </Link>
+                    
+                    <Link
+                      to={`${product._id}`}
+                      type="button"
+                      className="mr-3  bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded 
+                     focus:outline-none focus:shadow-outline"
+                    >
+                      {" "}
+                      Sửa{" "}
+                    </Link>
+                    <button
+                      type="button"
+                      className="btn_delete text-[15px] bg-red-500 hover:bg-red-700 text-white rounded 
+                 focus:outline-none focus:shadow-outline"
+                      onClick={() =>{ 
+                       mutate(product)
+                      }
+                        }
+                          
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+             
+              </>
+            );
+          })}
+        </tbody>
+       
+      </table>
+    </div>
+    
+    )
+}
+
+export default Order
